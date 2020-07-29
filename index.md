@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 
-You can use the [editor on GitHub](https://github.com/mach33n/AR.js-Demo/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
 
-### Markdown
+<!-- rawgithack development URL -->
+<script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<body style='margin : 0px; overflow: hidden;'>
+   <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mach33n/AR.js-Demo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+        <!-- use rawgithack to retrieve the correct url for nft marker (see 'trex' below) -->
+        <a-nft
+            type='nft' url='https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex'
+            smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>
+            <a-entity
+                gltf-model='https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf'
+                scale="5 5 5"
+                position="100 100 0"
+                >
+            </a-entity>
+        </a-nft>
+		<a-entity camera></a-entity>
+    </a-scene>
+</body>
